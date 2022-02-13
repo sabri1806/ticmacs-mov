@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+
+import Movies from './components/Movies';
+
+const Container = styled.div`
+  background-color: #ede9fe;
+`;
+
+const Header= styled.div`
+  background-color: #1e3a8a;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="App">
+      <Header className="App-header">
+        Proyecto Vi-Datec
+      </Header>
+      <Movies/>
+    </Container>
   );
 }
 

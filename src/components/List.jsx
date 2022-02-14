@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import { getSelectedMovieData } from '../sevices/movies.services';
 
 import Card from './Card';
 
@@ -26,7 +28,28 @@ const Content = styled.div`
     justify-content: center;
 `;
 
-const List = ({genre, movies}) => {
+const List = ({genre, movies, selectedMovieId, setSelectedMovieId}) => {
+    const [movieDetails, setMovieDetails] = useState(null);
+
+    const handleSelect = (movieId) =>{
+        setSelectedMovieId((prev)=>{
+            if(!prev || prev !== movieId){
+                return movieId
+            }else{
+                return null
+            }
+        })
+        if(movieId !== selectedMovieId){
+            getSelectedMovieData(movieId).then(({data})=>{
+                setMovieDetails((prevState)=>{
+                    if(!prevState || data.id !== prevState){
+                        return data
+                    }
+                });
+            });
+        }
+    };    
+
     return (
         <Container>
             <Title>{genre}</Title>
@@ -37,6 +60,9 @@ const List = ({genre, movies}) => {
                             <Card 
                                 key={index}
                                 movie={movie}
+                                movieDetails={movieDetails}
+                                onSelectMovie={(movieId)=> handleSelect(movieId)}
+                                selected={selectedMovieId === movie?.id}
                             />
                         )
                     })

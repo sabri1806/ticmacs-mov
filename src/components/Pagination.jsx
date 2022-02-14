@@ -20,14 +20,13 @@ const Nav = styled.button`
     }
 `;
 
-const Paginator = ({page, setPage}) => {
-    console.log(page)
+const Pagination = ({page, setPage, totalPages}) => {
    return (
        <Container>
            <Nav disabled={page === 1} onClick={()=> setPage(page-1)}>&lt;</Nav>
-           <Nav onClick={()=> setPage(page+1)}>&gt;</Nav>
+           <Nav disabled={page === totalPages} onClick={()=> setPage(page+1)}>&gt;</Nav>
        </Container>
    )
 };
 
-export default Paginator;
+export default Pagination;

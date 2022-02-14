@@ -19,7 +19,7 @@ function App() {
   return (
     <Container className="App">
       <Header className="App-header">
-        Proyecto Vi-Datec
+        Vi-Datec Proyect
       </Header>
       <Movies/>
     </Container>
